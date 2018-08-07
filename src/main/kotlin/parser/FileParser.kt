@@ -23,6 +23,9 @@ class FileParser(private val input: Collection<File>, private val output: File){
     }
 
     private fun writeOut(){
+//        output.printWriter().use {
+//            it.println(" id,name,goal,category_name,category_slug,country,region,state,pledged,deadline,created_at,launched_at,state_changed_at,backers_count,creator_name,database_created_at")
+//        }
         output.printWriter().use {
             while(true){
                 val p = projectsQueue.poll(1, TimeUnit.SECONDS) ?: break
