@@ -32,6 +32,7 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
+    compile(kotlin("reflect"))
     compile("org.json","json","20180130")
     testCompile("junit", "junit", "4.12")
 }

@@ -1,7 +1,10 @@
 package data
 
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.memberProperties
+
 data class ThinProject(
-        var id: String,
+        var id: Long,
         var name: String,
         var goal: Int,
         var category_name: String,
@@ -15,5 +18,23 @@ data class ThinProject(
         var launched_at: Long,
         var state_changed_at: Long,
         var backers_count: Int,
-        var creator_name: String
-)
+        var creator_name: String,
+        var database_created_at: Long
+) {
+    fun toCSV() = "\"$id\"," +
+            "\"$name\"," +
+            "\"$goal\"," +
+            "\"$category_name\"," +
+            "\"$category_slug\"," +
+            "\"$country\"," +
+            "\"$region\"," +
+            "\"$state\"," +
+            "\"$pledged\"," +
+            "\"$deadline\"," +
+            "\"$created_at\"," +
+            "\"$launched_at\"," +
+            "\"$state_changed_at\"," +
+            "\"$backers_count\"," +
+            "\"$creator_name\"," +
+            "\"$database_created_at\""
+}
