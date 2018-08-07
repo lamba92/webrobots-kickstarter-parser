@@ -11,12 +11,12 @@ import java.time.format.DateTimeFormatter
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit
 
-class FileParser(private val input: Collection<File>, private val output: File){
+class FileParser(private val input: File, private val output: File){
 
     private val projectsQueue = LinkedBlockingQueue<ThinProject>()
 
     fun start(){
-        val a = Thread{ input.forEach { parse(it) } }.apply { start() }
+        val a = Thread{ parse(input) }.apply { start() }
         val b = Thread{ writeOut() }.apply { start() }
         a.join()
         b.join()

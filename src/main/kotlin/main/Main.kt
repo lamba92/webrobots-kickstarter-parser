@@ -5,9 +5,11 @@ import java.io.File
 
 fun main(args: Array<String>){
     if(args.size != 1) throw Exception("PARAMETER ERROR")
-    val c = ArrayList<File>()
-    File(args[0]).walkTopDown().filter { it.extension == "json" }.toCollection(c)
-    FileParser(c, createTempFile("out", ".csv", File(args[0]))).start()
+    val c = ArrayList<Thread>()
+    File(args[0]).walkTopDown().filter { it.extension == "json" }.forEach {
+        c.add(Thread{FileParser(it, File("${args[0]}\\${it.nameWithoutExtension}.csv")).start()}.apply { start() })
+    }
+    c.forEach { it.join() }
 }
 
 fun String.changeChars(): String {
